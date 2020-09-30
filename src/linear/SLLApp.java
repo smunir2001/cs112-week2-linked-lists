@@ -1,35 +1,35 @@
 package linear;
 
-public class LLApp {
+public class SLLApp {
 
     /*
-    Three steps to add an element at the front:
-        1. Create a new node.
-        2. Make the new node point to the first node of the original list.
-        3. Make front (the variable which points to the first node of the
-            list) point to the new node, otherwise the newly added node
-            cannot be accessed.
-     Note 1: The third is essential!
-     Since the first node of the linked list is no longer the original one,
-        we need to let front point to the newly added node.
-     Otherwise, the new node is added into the list, but we still cannot
-        access it without knowing its address.
-     Remember we can only access nodes starting from front.
-     Note 2: The implementation works when the original list is empty, which
-        means we build a new linked list by adding the first element.
+   Three steps to add an element at the front:
+       1. Create a new node.
+       2. Make the new node point to the first node of the original list.
+       3. Make front (the variable which points to the first node of the
+           list) point to the new node, otherwise the newly added node
+           cannot be accessed.
+    Note 1: The third is essential!
+    Since the first node of the linked list is no longer the original one,
+       we need to let front point to the newly added node.
+    Otherwise, the new node is added into the list, but we still cannot
+       access it without knowing its address.
+    Remember we can only access nodes starting from front.
+    Note 2: The implementation works when the original list is empty, which
+       means we build a new linked list by adding the first element.
 
-     @param item
-     @param front
-     @return
-     */
-    public static IntNode addFront(int item, IntNode front) {
+    @param item
+    @param front
+    @return
+    */
+    public static StringNode addFront(String item, StringNode front) {
 
         // It works when the original list is empty, meaning front is null.
-        return new IntNode(item, front);
+        return new StringNode(item, front);
 
         /*
         The following code has the same semantic:
-            IntNode newNode = new IntNode(item, null);
+            StringNode newNode = new StringNode(item, null);
             node.next = front;
             front = node;
             return front;
@@ -44,7 +44,7 @@ public class LLApp {
     @param front
     @return
      */
-    public static IntNode deleteFront(IntNode front) {
+    public static StringNode deleteFront(StringNode front) {
 
         if (front == null) {
 
@@ -57,7 +57,7 @@ public class LLApp {
     }
 
     // While loop version, stylized single-line output
-    public static void traverse(IntNode front) {
+    public static void traverse(StringNode front) {
 
         if (front == null) {
 
@@ -70,7 +70,7 @@ public class LLApp {
         // First item.
         System.out.print(front.data);
         // Prepare to loop starting with second item
-        IntNode ptr = front.next;
+        StringNode ptr = front.next;
         while (ptr != null) {
 
             System.out.print("->" + ptr.data);
@@ -82,11 +82,11 @@ public class LLApp {
 
     }
 
-    public static boolean search(IntNode front, int target) {
+    public static boolean search(StringNode front, String target) {
 
-        for (IntNode ptr = front; ptr != null; ptr = ptr.next) {
+        for (StringNode ptr = front; ptr != null; ptr = ptr.next) {
 
-            if (target == ptr.data) {
+            if (target.equals(ptr.data)) {
 
                 return true;
 
@@ -109,7 +109,7 @@ public class LLApp {
     @param item
     @return
      */
-    public static IntNode delete(IntNode front, int item) {
+    public static StringNode delete(StringNode front, String item) {
 
         // For empty list.
         if (front == null) {
@@ -122,10 +122,10 @@ public class LLApp {
         Prev is to be used for pointing to the node before
             node-to-be-deleted
          */
-        IntNode ptr = front, prev = null;
+        StringNode ptr = front, prev = null;
         while (ptr != null) {
 
-            if (ptr.data == item) {
+            if (ptr.data.equals(item)) {
 
                 break;
 
@@ -164,12 +164,12 @@ public class LLApp {
     }
 
     // Add newItem after currItem
-    public static void addAfter(IntNode front, int currItem, int newItem) {
+    public static void addAfter(StringNode front, String currItem, String newItem) {
 
-        IntNode ptr = front;
+        StringNode ptr = front;
         while (ptr != null) {
 
-            if (ptr.data == currItem) {
+            if (ptr.data.equals(currItem)) {
 
                 break;
 
@@ -186,45 +186,25 @@ public class LLApp {
 
         }
 
-        ptr.next = new IntNode(newItem, ptr.next);
+        ptr.next = new StringNode(newItem, ptr.next);
 
     }
 
     public static void main(String[] args) {
 
-        IntNode front = null;
+        StringNode front = null;
 
         traverse(front);  // Test traverse on empty list
-        System.out.println("\nadding 4 to front");
-        front = addFront(4,front);
+        System.out.println("\nadding apple to front");
+        front = addFront("apple",front);
         traverse(front);
-        System.out.println("\nadding 6 to front");
-        front = addFront(6,front);
+        System.out.println("\nadding banana to front");
+        front = addFront("banana",front);
         traverse(front);
-        System.out.println("\nadding 8 to front");
-        front = addFront(8,front);
+        System.out.println("\nadding mango to front");
+        front = addFront("mango",front);
         traverse(front);
 
-        boolean flag = search(front, 5);
-        if (flag) {
-
-            System.out.println("5 is in the list");
-
-        } else {
-
-            System.out.println("5 is not in the list");
-
-        }
-        boolean flag2 = search(front, 6);
-        if (flag2) {
-
-            System.out.println("6 is in the list");
-
-        } else {
-
-            System.out.println("6 is not in the list");
-
-        }
 
         System.out.println("\ndeleting front");
         front = deleteFront(front);
