@@ -1,0 +1,20 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.war
+*.ear
+*.pdf
+
+# IDE
+out/
+.idea/
+.settings/
+bin/
+*.iml
+
+# misc
+.DS_Store
+.gitconfig
